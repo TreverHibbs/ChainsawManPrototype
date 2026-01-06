@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "BulletBillActor.generated.h"
 
 UCLASS()
@@ -15,6 +16,9 @@ public:
 	// Sets default values for this actor's properties
 	ABulletBillActor();
 
+	UPROPERTY(EditAnywhere, Category=Input)
+	TSoftObjectPtr<UProjectileMovementComponent> HomingMovementComponent;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
