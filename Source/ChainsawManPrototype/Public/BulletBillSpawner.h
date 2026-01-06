@@ -16,6 +16,9 @@ public:
 	ABulletBillSpawner();
 	
 	FTimerHandle SpawnRateTimerHandle;
+	
+	UPROPERTY(EditAnywhere, Category=Spawn)
+	TSubclassOf<AActor> BlueprintToSpawn;
 
 protected:
 	// Called when the game starts or when spawned

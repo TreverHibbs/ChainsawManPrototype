@@ -2,12 +2,14 @@
 
 
 #include "BulletBillSpawner.h"
+
+#include "BulletBillActor.h"
 #include "TimerManager.h"
 
 // Sets default values
 ABulletBillSpawner::ABulletBillSpawner()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -27,5 +29,10 @@ void ABulletBillSpawner::Tick(float DeltaTime)
 void ABulletBillSpawner::SpawnBulletBill()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Hello spawner"));
+	//ABulletBillActor* BulletBillInstance = NewObject<ABulletBillActor>(GetWorld(), ABulletBillActor::StaticClass());
+	AActor* BulletBillInstance = GetWorld()->SpawnActor<AActor>(
+		BlueprintToSpawn,
+		GetActorLocation(),
+		GetActorRotation()
+	);
 }
-
