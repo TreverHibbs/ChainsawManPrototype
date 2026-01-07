@@ -28,9 +28,8 @@ void ABulletBillSpawner::Tick(float DeltaTime)
 
 void ABulletBillSpawner::SpawnBulletBill()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Hello spawner"));
-	//ABulletBillActor* BulletBillInstance = NewObject<ABulletBillActor>(GetWorld(), ABulletBillActor::StaticClass());
-	AActor* BulletBillInstance = GetWorld()->SpawnActor<AActor>(
+	//TODO: add hit detection for bullet bill
+	GetWorld()->SpawnActor<AActor>(
 		BlueprintToSpawn,
 		GetActorLocation(),
 		GetActorRotation()

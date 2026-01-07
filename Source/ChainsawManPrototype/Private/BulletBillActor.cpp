@@ -15,11 +15,6 @@ ABulletBillActor::ABulletBillActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	HomingMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-	HomingMovementComponent->bIsHomingProjectile = true;
-	HomingMovementComponent->HomingAccelerationMagnitude = 15000.f;
-	HomingMovementComponent->ProjectileGravityScale = 0.f;
-	HomingMovementComponent->MaxSpeed = 3000.f;
-	HomingMovementComponent->InitialSpeed = 3000.f;
 }
 
 // Called when the game starts or when spawned
@@ -31,6 +26,7 @@ void ABulletBillActor::BeginPlay()
 		const AChainsawCharacter* Instance = *It;
 		HomingMovementComponent->HomingTargetComponent = Cast<USceneComponent>(
 			Instance->FindComponentByTag(USceneComponent::StaticClass(), TEXT("Target")));
+		HomingMovementComponent->bRotationFollowsVelocity = true;
 	}
 }
 
@@ -38,4 +34,16 @@ void ABulletBillActor::BeginPlay()
 void ABulletBillActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ABulletBillActor::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	
+	HomingMovementComponent->bIsHomingProjectile = true;
+	HomingMovementComponent->HomingAccelerationMagnitude = 15000.f;
+	HomingMovementComponent->ProjectileGravityScale = 0.f;
+	HomingMovementComponent->MaxSpeed = 3000.f;
+	HomingMovementComponent->InitialSpeed = 3000.f;
+	HomingMovementComponent->bRotationFollowsVelocity = true;
 }
