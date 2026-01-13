@@ -28,7 +28,9 @@ public:
 	float TimeToApex; //units are seconds
 	UPROPERTY(EditAnywhere, Category="Character Movement: Jumping / Falling")
 	float FallingGravMultiplier; //units are cm
-
+	//TODO group my favorite movement properties by creating custom properties that
+	//act as proxies for the actual values they edit
+	
 	UFUNCTION()
 	void Move(const FInputActionValue& ActionValue);
 	UFUNCTION()
