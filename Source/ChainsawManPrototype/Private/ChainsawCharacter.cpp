@@ -14,13 +14,13 @@ AChainsawCharacter::AChainsawCharacter()
 void AChainsawCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	UCharacterMovementComponent* CharacterMovementPointer = GetCharacterMovement();
 	if (CharacterMovementPointer != nullptr)
 	{
 		CharacterMovementPointer->JumpZVelocity = 2.f * (JumpHeight / TimeToApex);
-		//TODO: also change the gravity on character base on calc
-		//I believe it should be gravity = -2*(JumpHeight/TimeToApex^2)
+		const auto WorldGravity = GetWorld()->GetGravityZ();
+		CharacterMovementPointer->GravityScale = (-2.f * (JumpHeight / TimeToApex)) / WorldGravity;
 	}
 }
 
