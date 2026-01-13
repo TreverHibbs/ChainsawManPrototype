@@ -22,6 +22,12 @@ public:
 	TSoftObjectPtr<UInputAction> JumpAction;
 	UPROPERTY(EditAnywhere, Category=Input)
 	TSoftObjectPtr<UInputAction> LookAction;
+	UPROPERTY(EditAnywhere, Category="Character Movement: Jumping / Falling")
+	float JumpHeight; //units are cm
+	UPROPERTY(EditAnywhere, Category="Character Movement: Jumping / Falling")
+	float TimeToApex; //units are seconds
+	UPROPERTY(EditAnywhere, Category="Character Movement: Jumping / Falling")
+	float FallingGravMultiplier; //units are cm
 
 	UFUNCTION()
 	void Move(const FInputActionValue& ActionValue);

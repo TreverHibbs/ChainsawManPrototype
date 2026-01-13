@@ -3,6 +3,7 @@
 
 #include "ChainsawManPrototype/Public/ChainsawCharacter.h"
 #include "EnhancedInputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AChainsawCharacter::AChainsawCharacter()
@@ -13,6 +14,14 @@ AChainsawCharacter::AChainsawCharacter()
 void AChainsawCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	UCharacterMovementComponent* CharacterMovementPointer = GetCharacterMovement();
+	if (CharacterMovementPointer != nullptr)
+	{
+		CharacterMovementPointer->JumpZVelocity = 2.f * (JumpHeight / TimeToApex);
+		//TODO: also change the gravity on character base on calc
+		//I believe it should be gravity = -2*(JumpHeight/TimeToApex^2)
+	}
 }
 
 // Called every frame
